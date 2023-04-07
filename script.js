@@ -60,4 +60,5 @@ function generatePassword() {
   }
 
   return password;
+  }
 }
