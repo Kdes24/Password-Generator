@@ -17,10 +17,12 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
+  // Prompt the user for password criteria
   var passwordLength = parseInt(prompt("How many characters would you like your password to be? (Choose between 8 and 128)"));
 
-  if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
-    alert("Please enter a valid number between 8 and 128.");
+  // Check if the password length is within the allowed range
+  if (passwordLength < 8 || passwordLength > 30 || isNaN(passwordLength)) {
+    alert("Please enter a valid number between 8 and 30.");
     return "";
   }
 
@@ -29,15 +31,17 @@ function generatePassword() {
   var includeNumbers = confirm("Would you like to include numbers?");
   var includeSymbols = confirm("Would you like to include symbols?");
 
+  // Check if at least one type of character is selected
   if (!includeLowercase && !includeUppercase && !includeNumbers && !includeSymbols) {
     alert("Please select at least one type of character.");
     return "";
-  
-    
+  }
+
+  // Define character sets based on selected criteria
   var lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
   var uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var numberChars = "0123456789";
-  var symbolChars = "!@#$%^&*()_+-={}[]|\\:;\"'<>,.?/";
+  var symbolChars = "!@#$%^&*()_";
 
   var availableChars = "";
   if (includeLowercase) {
@@ -53,6 +57,7 @@ function generatePassword() {
     availableChars += symbolChars;
   }
 
+  // Generate the password using the selected characters
   var password = "";
   for (var i = 0; i < passwordLength; i++) {
     var randomIndex = Math.floor(Math.random() * availableChars.length);
@@ -61,4 +66,4 @@ function generatePassword() {
 
   return password;
   }
-}
+
